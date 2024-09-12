@@ -1,0 +1,45 @@
+# Node modules
+node_modules/
+
+# TypeScript
+*.tsbuildinfo
+*.d.ts
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+out/
+
+# Prisma
+prisma/migrations/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# npm/Yarn lock files
+package-lock.json
+yarn.lock
+
+# npm i -D @types/express  typescript @types/cors nodemon
