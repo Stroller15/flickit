@@ -1,13 +1,10 @@
-import { Button } from '@/components/ui/button'
 import React from 'react'
+import HeroSection from '../components/custom/HeroSection';
 
 const App = () => {
   return (
-    <div className='text-red-500'>
-      <h1>This is working</h1>
-      <Button>
-        Hello this is shubham
-      </Button>
+    <div>
+      <HeroSection />
     </div>
   )
 }
