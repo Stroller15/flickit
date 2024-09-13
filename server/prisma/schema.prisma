@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
@@ -13,9 +12,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id                  Int       @id @default(autoincrement())
+  name                String    @db.VarChar(191)
+  email               String    @unique
+  password            String
+  password_rest_token String?
+  token_send_at       DateTime?
+  email_varified_at   DateTime?
+  email_verify_token  String?
+  created_at          DateTime  @default(now())
 }

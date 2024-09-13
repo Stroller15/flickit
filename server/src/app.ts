@@ -2,19 +2,18 @@ import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 
 
-
-// default middleware
+// Default middleware
 dotenv.config();
 
 
 
-// custom middleware
+// Custom middleware
 const app: Application = express();
 
-console.log("hey hau hau");
+// Routes
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hey this is working no worry")
+app.get("/ping", (req: Request, res: Response) => {
+  res.send("Pong Pong... 🚀🚀🚀🚀")
 });
 
 export default app;
