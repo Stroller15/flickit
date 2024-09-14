@@ -7,7 +7,7 @@ const HeroSection = () => {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <div>
-        <Image width={500} height={500} src="/assets/vs.png" alt="hero_img" />
+        <Image width={500} height={500} src="/assets/vs_image.png" alt="hero_img" />
       </div>
       <h1 className="text-6xl md:text-7xl lg:text-9xl font-extrabold">
         Flickit

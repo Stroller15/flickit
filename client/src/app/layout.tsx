@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const firaCode = localFont({
-  src: "./fonts/FiraCode.woff", 
+  src: "./fonts/FiraCode.woff",
   variable: "--font-fira-code",
   weight: "100 900",
 });
-
-console.log(firaCode)
 
 export const metadata: Metadata = {
   title: "Flickit",
@@ -23,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${firaCode.variable} antialiased`}
+        className={cn(
+          "min-h-screen bg-slate-50",
+          `${firaCode.variable} antialiased`
+        )}
       >
         {children}
       </body>
