@@ -9,7 +9,7 @@ const HeroSection = () => {
       <div>
         <Image width={500} height={500} src="/assets/vs_image.png" alt="hero_img" />
       </div>
-      <h1 className="text-6xl md:text-7xl lg:text-9xl font-extrabold bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent">
+      <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent">
         Flickit
       </h1>
       <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-center">

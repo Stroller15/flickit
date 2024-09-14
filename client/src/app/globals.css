@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  font-family: var(--font-fira-code), monospace; /* Ensure it falls back to monospace if not applied */
+  font-family: Inter, "Inter Placeholder", sans-serif;
 }
 @layer base {
   :root {
