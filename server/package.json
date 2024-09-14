@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "a thumbnail comparison app",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./dist/index.js",
     "watch": "tsc -w",
     "server": "nodemon ./dist/index.js",
-    "dev": "concurrently \"npm run watch\" \"npm run server\"",
-    "build": "tsc",
-    "prisma": "npx prisma db push && npx prisma generate"
+    "dev": "concurrently \"npm run watch\" \"npm run server\"  \"npm run watch-views\"",
+    "build": "tsc && npm run copy-files",
+    "prisma": "npx prisma db push && npx prisma generate",
+    "copy-files": "copyfiles -u 1 \"src/views/**/*\" dist/",
+    "watch-views": "nodemon --watch src/views -e ejs -x \"npm run copy-files\""
   },
   "author": "shubham verma",
   "license": "ISC",
@@ -19,12 +22,14 @@
     "concurrently": "^9.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express": "^4.21.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.4",
+    "copyfiles": "^2.4.1",
     "nodemon": "^3.1.4",
     "prisma": "^5.19.1",
     "ts-node": "^10.9.2",
