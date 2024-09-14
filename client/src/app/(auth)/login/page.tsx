@@ -8,7 +8,7 @@ const LoginPage = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="w-[550px] bg-white p-5 rounded-xl shadow-md">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-center">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-center bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent">
           Flickit
         </h1>
         <h1 className="mt-2 text-2xl font-bold">Login</h1>
