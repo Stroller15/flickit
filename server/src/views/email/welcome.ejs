@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      background-color: #4caf50;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .content {
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .content p {
+      font-size: 16px;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .cta-button {
+      background-color: #4caf50;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background-color: #45a049;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>Welcome, <%= name %>!</h1>
+    </div>
+
+    <div class="content">
+      <p>Hi <%= name %>,</p>
+      <p>We’re thrilled to have you onboard! Thank you for signing up to our platform. Here are some next steps to help you get started:</p>
+      <ul>
+        <li>Explore our features and tools designed just for you.</li>
+        <li>Get personalized recommendations based on your profile.</li>
+        <li>Connect with our community to learn and grow.</li>
+      </ul>
+      <p>We hope you enjoy your experience with us. If you have any questions, feel free to reach out to our support team.</p>
+    </div>
+
+    <div class="footer">
+      <p>If you didn’t create an account with us, please disregard this email.</p>
+      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+
+</html>
