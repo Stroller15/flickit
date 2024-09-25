@@ -14,7 +14,6 @@ const app: Application = express();
 
 
 // Default middleware
-
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cors());
@@ -38,7 +37,7 @@ app.get("/", async (req: Request, res: Response) => {
       name: "Shubham Verma"
     });
    
-    const emailInfo = await sendEmail("toneyec962@asaud.com", "Testing the smtp", html);
+    const emailInfo = await sendEmail("dajovif919@abevw.com", "Testing the smtp", html);
     console.log('Email info:', emailInfo);
     return res.json({msg: "Email sent successfully", info: emailInfo})
   } catch (error) {
