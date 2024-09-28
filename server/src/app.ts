@@ -31,15 +31,22 @@ app.get("/ping", (req: Request, res: Response) => {
   res.send("Pong Pong... 🚀🚀🚀🚀")
 });
 
+
+// Queue
+
+import "./jobs/index.js";
+import { emailQueue, emailQueueName } from "./jobs/email.job.js";
+
 app.get("/", async (req: Request, res: Response) => {
   try {
-    const html = await ejs.renderFile(__dirname + `/views/email/welcome.ejs`, {
-      name: "Shubham Verma"
-    });
+    // const html = await ejs.renderFile(__dirname + `/views/email/welcome.ejs`, {
+    //   name: "Shubham Verma"
+    // });
    
-    const emailInfo = await sendEmail("dajovif919@abevw.com", "Testing the smtp", html);
-    console.log('Email info:', emailInfo);
-    return res.json({msg: "Email sent successfully", info: emailInfo})
+    // const emailInfo = await sendEmail("dajovif919@abevw.com", "Testing the smtp", html);
+    // console.log('Email info:', emailInfo);
+    await emailQueue.add(emailQueueName, {name: "jack", age: 24})
+    return res.json({msg: "Email sent successfully"})
   } catch (error) {
     console.error('Error in route:', error);
     return res.status(500).json({msg: "Error sending email", error: error.message});
