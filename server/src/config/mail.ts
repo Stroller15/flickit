@@ -15,7 +15,7 @@ export const transporter = nodemailer.createTransport({
 
 export const sendEmail = async (to: string, subject: string, body: string) => {
   try {
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
       from: process.env.FROM_EMAIL,
       to: to,
       subject: subject,
