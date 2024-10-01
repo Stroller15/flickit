@@ -42,7 +42,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="mt-4">
-            <Label htmlFor="cpassword">Password</Label>
+            <Label htmlFor="cpassword">Confirm Password</Label>
             <Input
               type="password"
               id="cpassword"
