@@ -10,23 +10,29 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app: Application = express();
 
-// Default middleware
+// * Default middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-// View engine
+// * View engine
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "./views"));
 
-// Custom middleware
+// * Custom middleware
 
-// Routes
+
+
+// * Routes
+import authRouter from "./routes/auth.route.js"
 app.get("/ping", (req: Request, res: Response) => {
   res.send("Pong Pong... 🚀🚀🚀🚀");
 });
 
-// Queue
+app.use("/api/auth", authRouter)
+
+
+// *vQueue
 
 import { emailQueue, emailQueueName } from "./jobs/email.job.js";
 
@@ -48,7 +54,7 @@ app.get("/", async (req: Request, res: Response) => {
     console.error("Error in route:", error);
     return res
       .status(500)
-      .json({ msg: "Error sending email", error: error.message });
+      .json({ msg: "Error sending email", error: error instanceof Error ? error.message : String(error) });
   }
 });
 
