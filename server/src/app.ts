@@ -34,7 +34,7 @@ app.use("/api/auth", authRouter)
 
 // *vQueue
 
-import { emailQueue, emailQueueName } from "./jobs/email.job.js";
+import { emailQueue, emailQueueName } from "./jobs/index.js";
 
 app.get("/", async (req: Request, res: Response) => {
   try {
