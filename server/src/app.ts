@@ -25,10 +25,6 @@ app.set("views", path.resolve(__dirname, "./views"));
 
 // * Routes
 import authRouter from "./routes/auth.route.js"
-app.get("/ping", (req: Request, res: Response) => {
-  res.send("Pong Pong... 🚀🚀🚀🚀");
-});
-
 app.use("/api/auth", authRouter)
 
 
@@ -41,9 +37,6 @@ app.get("/", async (req: Request, res: Response) => {
     const html = await ejs.renderFile(__dirname + `/views/email/welcome.ejs`, {
       name: "Shubham Verma"
     });
-
-    // const emailInfo = await sendEmail("dajovif919@abevw.com", "Testing the smtp", html);
-    // console.log('Email info:', emailInfo);
     await emailQueue.add(emailQueueName, {
       to: "dajovif919@abevw.com",
       subject: "testing the mail check",
