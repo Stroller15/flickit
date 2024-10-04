@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { registerUser } from "../controllers/auth.controller.js";
+import { registerUser, verifyEmail } from "../controllers/auth.controller.js";
 
 const router = Router();
 
 
 router.post("/", registerUser);
+router.get("/verify-email", verifyEmail);
 
 
 

@@ -21,7 +21,6 @@ export const registerSchema = z.object({
 
     confirm_password: z
     .string()
-    .optional()
 
 }).refine((data) => data.password === data.confirm_password, {
   path: ['confirm_password'],
