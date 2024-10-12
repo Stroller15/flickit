@@ -1,4 +1,4 @@
-import express, { Application, Request, Response, urlencoded } from "express";
+import express, { Application, Request, Response } from "express";
 
 import ejs from "ejs";
 import { sendEmail } from "./config/mail.js";
@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 // * View engine
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "./views"));
 
@@ -25,6 +26,7 @@ app.use("/api/auth", authRouter);
 
 import { emailQueue, emailQueueName } from "./jobs/index.js";
 import path from "path";
+import { fileURLToPath } from "url";
 
 app.get("/", async (req: Request, res: Response) => {
   try {

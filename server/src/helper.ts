@@ -1,9 +1,9 @@
-import { promises } from "dns";
 import { ZodError } from "zod";
 import ejs from "ejs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// formate error
 export const formateZodError = (err: ZodError) => {
   const error: Record<string, string> = {};
 
@@ -16,10 +16,11 @@ export const formateZodError = (err: ZodError) => {
   return error;
 };
 
+// sending email 
 export const renderEmailEjs = async (
   fileName: string,
   payload: any
-): Promise<string> => {
+): Promise<any> => {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const html = await ejs.renderFile(
     __dirname + `/views/email/${fileName}.ejs`,
