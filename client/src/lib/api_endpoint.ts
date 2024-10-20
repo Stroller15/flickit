@@ -1,5 +1,6 @@
 import { Env } from "./env";
 
-export const BASE_URL = `${Env.BACKEND_URL}/api`;
+export const BACKEND_URL = Env.BACKEND_URL;
 
-export const REGISTER_URL = `${BASE_URL}/auth/register`;
+export const REGISTER_URL = BACKEND_URL + "/api/auth/register";
+

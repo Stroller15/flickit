@@ -13,7 +13,7 @@ const Register = () => {
         message: "",
         errors: {}
     }
-    const [state, formAction] = useFormState(registerAction, initState)
+    const [state, formAction] = useFormState(registerAction, initState);
   return (
     <form action={formAction}>
       <div className="mt-4">
