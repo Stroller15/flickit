@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 
 
@@ -16,12 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={cn(
-          "min-h-screen bg-slate-50"
-        )}
-      >
+      <body className={cn("min-h-screen bg-slate-50")}>
         {children}
+        <Toaster richColors position="top-right"/>
       </body>
     </html>
   );
