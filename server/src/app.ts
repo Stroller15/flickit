@@ -41,12 +41,10 @@ app.get("/", async (req: Request, res: Response) => {
     return res.json({ msg: "Email sent successfully" });
   } catch (error) {
     console.error("Error in route:", error);
-    return res
-      .status(500)
-      .json({
-        msg: "Error sending email",
-        error: error instanceof Error ? error.message : String(error),
-      });
+    return res.status(500).json({
+      msg: "Error sending email",
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 });
 

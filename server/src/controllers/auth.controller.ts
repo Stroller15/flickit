@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
-import { registerSchema } from "../validation/auth.validation.js";
+import { loginSchema, registerSchema } from "../validation/auth.validation.js";
 import { ZodError } from "zod";
 import { formateZodError, renderEmailEjs } from "../helper.js";
 import { prisma } from "../config/db.js";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import { emailQueue, emailQueueName } from "../jobs/email.job.js";
+import jwt from "jsonwebtoken";
 
-const uniqueId = uuidv4();
-console.log(uniqueId);
 
 export const registerUser = async (req: Request, res: Response) => {
   const saltRounds = 10;
@@ -86,36 +85,6 @@ export const registerUser = async (req: Request, res: Response) => {
   }
 };
 
-export const loginUser = async (req: Request, res: Response) => {
-  try {
-    const {email, password} = req.body;
-
-    const user = await prisma.user.findUnique({
-      where: {
-        email
-      }
-    })
-
-    if(!user) {
-      return res.status(401).json({message: "Invalid user email or password"})
-    }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if(!isPasswordValid) {
-      return res.status(401).json({message: "Password is invalid"});
-    }
-
-    return res.status(200).json({
-      message: "User logged in successfully"
-    })
-  } catch (error) {
-    res.status(500).json({
-      message: "Something went wrong please try again later"
-    })
-  }
-}
-
 export const verifyEmail = async (req: Request, res: Response) => {
   try {
     const { email, token } = req.query;
@@ -156,4 +125,73 @@ export const verifyEmail = async (req: Request, res: Response) => {
 
 export const verifyEmailError = (req: Request, res: Response) => {
   return res.render("/api/auth/email-verify-error");
+};
+
+export const loginUser = async (req: Request, res: Response) => {
+  const JWT_SECRET_KEY = process.env.JWT_SECRET;
+  if (!JWT_SECRET_KEY) {
+    throw new Error("JWT_SECRET is not defined in the environment variables");
+  }
+  const jwtOptions = {
+    expiresIn: "7d",
+  };
+  try {
+    const body = req.body;
+
+    const payload = loginSchema.parse(body);
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: payload.email,
+      },
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        errors: {
+          email: "No user found with this email",
+        },
+      });
+    }
+
+    const isPasswordValid = await bcrypt.compare(
+      payload.password,
+      user.password
+    );
+
+    if (!isPasswordValid) {
+      return res
+        .status(401)
+        .json({ errors: { message: "Password is invalid" } });
+    }
+    const JWTPayload = {
+      id: user.id,
+      name: user.name,
+      email: user.email
+    }
+    // Generate jwt here
+    const token = jwt.sign(JWTPayload, JWT_SECRET_KEY, jwtOptions);
+
+    return res.status(200).json({
+      message: "User logged in successfully",
+      data: {
+        ...JWTPayload,
+        token: `Bearer ${token}`
+      }
+    });
+  } catch (err) {
+    console.log("🚀 ~ registerUser ~ err:", err);
+    if (err instanceof ZodError) {
+      const errors = formateZodError(err);
+
+      return res.status(422).json({
+        message: "invalid input",
+        errors,
+      });
+    }
+    return res.status(500).json({
+      message: "something went wrong",
+      err,
+    });
+  }
 };
