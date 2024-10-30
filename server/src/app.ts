@@ -3,6 +3,7 @@ import express, { Application, Request, Response } from "express";
 import ejs from "ejs";
 import { sendEmail } from "./config/mail.js";
 import cors from "cors";
+import morgan from "morgan";
 
 const app: Application = express();
 
@@ -10,6 +11,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use(morgan("dev"));
 
 // * View engine
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -20,7 +22,9 @@ app.set("views", path.resolve(__dirname, "./views"));
 
 // * Routes
 import authRouter from "./routes/auth.route.js";
+import userRouter from "./routes/user.route.js"
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
 
 // *vQueue
 
